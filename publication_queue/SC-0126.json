@@ -1,0 +1,10 @@
+{
+  "category": "phone",
+  "description": "Normalização E.164 de número brasileiro para deduplicação de contatos",
+  "expected": "559232232361",
+  "id": "SC-0126",
+  "input": {
+    "raw": "92 32232361"
+  },
+  "origin": "synthetic-generated"
+}
