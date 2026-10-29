@@ -1,0 +1,10 @@
+{
+  "category": "phone",
+  "description": "Normalização E.164 de número brasileiro para deduplicação de contatos",
+  "expected": "5544901876006",
+  "id": "SC-0081",
+  "input": {
+    "raw": "+55 (44) 90187-6006"
+  },
+  "origin": "synthetic-generated"
+}
