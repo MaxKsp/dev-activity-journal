@@ -1,0 +1,14 @@
+{
+  "category": "lead_score",
+  "description": "Pontuação de completude de cadastro para qualificação de lead",
+  "expected": 52,
+  "id": "SC-0060",
+  "input": {
+    "email": true,
+    "engagement_points": 12,
+    "name": false,
+    "phone": false,
+    "source": true
+  },
+  "origin": "synthetic-generated"
+}
