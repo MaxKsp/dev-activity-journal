@@ -1,0 +1,47 @@
+name: Pratica diaria e diario de desenvolvimento
+
+on:
+  schedule:
+    - cron: '17 12 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-dev-journal
+  cancel-in-progress: false
+
+jobs:
+  journal:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validar codigo
+        run: python -m unittest discover -s tests -v
+      - name: Gerar exercicio e resumo
+        shell: bash
+        run: |
+          python journal.py daily-prompt --date "$(TZ=America/Sao_Paulo date +%F)"
+          python journal.py report
+      - name: Commit apenas se houver mudancas
+        shell: bash
+        run: |
+          if [[ -z "$(git status --porcelain)" ]]; then
+            echo "Nenhuma mudanca. Sem commit artificial."
+            exit 0
+          fi
+          git config user.name "Max Keller"
+          git config user.email "maxkiller209@gmail.com"
+          git add challenges reports
+          git diff --cached --quiet && exit 0
+          git commit -m "chore(automacao): desafio diario $(TZ=America/Sao_Paulo date +%F)"
+          git push
