@@ -1,0 +1,10 @@
+{
+  "category": "phone",
+  "description": "Normalização E.164 de número brasileiro para deduplicação de contatos",
+  "expected": "5571903618186",
+  "id": "SC-0301",
+  "input": {
+    "raw": "+55 (71) 90361-8186"
+  },
+  "origin": "synthetic-generated"
+}
