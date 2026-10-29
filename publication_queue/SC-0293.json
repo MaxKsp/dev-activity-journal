@@ -1,0 +1,12 @@
+{
+  "category": "sla",
+  "description": "Classificação de prazo de atendimento em um pipeline de suporte",
+  "expected": "warning",
+  "id": "SC-0293",
+  "input": {
+    "elapsed_minutes": 865,
+    "limit_minutes": 909,
+    "warning_minutes": 60
+  },
+  "origin": "synthetic-generated"
+}
