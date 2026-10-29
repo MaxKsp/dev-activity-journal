@@ -33,3 +33,49 @@ No seu perfil, use: Contribution settings > Private contributions.
 - Nenhuma credencial é persistida no repositório.
 - O fluxo usa o token temporário padrão do GitHub Actions, limitado à escrita de conteúdo neste repositório.
 - Não acessa outros repositórios privados nem executa instaladores de terceiros.
+
+## Conjunto de cenários de CRM e suporte (29/10/2026)
+
+O repositório inclui casos sintéticos reproduzíveis para testar:
+normalização de telefones, políticas de retry/backoff, prazo SLA,
+janela de mensagens e pontuação de leads.
+
+Os arquivos `scenarios/SC-*.json` são gerados automaticamente, e
+`tests/test_scenarios.py` verifica dados, unicidade e resultado de cada caso.
+**São cenários de teste gerados, não trabalho manual já executado nem contatos reais.**
+
+Para regerar e validar a amostra:
+
+    py -3 generate_scenarios.py --count 412
+    py -3 -m unittest discover -s tests -v
+
+O GitHub pode aplicar regras de atribuição, indexação e visibilidade;
+a quantidade de commits não garante um número idêntico no gráfico.
+
+## Monitor local de publicações (meta 435, 29/10/2026)
+
+O script `scripts/publish_watcher.py` verifica a cada 10 segundos
+a meta diária no GitHub. Ele não cria commits vazios ou conteúdo fictício.
+Publica, no máximo, um arquivo novo ou alterado de `publication_queue/`
+por ciclo. Somente arquivos de texto válidos, com conteúdo substantivo,
+entram na fila. Os 412 cenários já gerados estão fora dessa fila.
+
+A rotina interrompe automaticamente quando:
+- a API confirma 435 contribuições no dia;
+- o calendário brasileiro passa para 30 de outubro;
+- a quantidade de publicações locais atinge o limite conservador,
+  considerando a primeira contagem válida.
+
+Se a contagem da API for inferior às 21 contribuições mostradas na
+captura, a publicação fica suspensa para evitar ultrapassar a meta.
+
+Acompanhamento sem publicações:
+
+    py -3 scripts/publish_watcher.py --once
+
+Execução local contínua (até o fim do dia):
+
+    py -3 scripts/publish_watcher.py --date 2026-10-29 --interval 10 --target 435 --publish
+
+É necessário manter o computador ligado e a sessão autenticada no GitHub.
+Não existe garantia de contabilização de um commit em 10 segundos no gráfico.
