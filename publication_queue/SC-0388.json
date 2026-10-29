@@ -1,0 +1,12 @@
+{
+  "category": "sla",
+  "description": "Classificação de prazo de atendimento em um pipeline de suporte",
+  "expected": "healthy",
+  "id": "SC-0388",
+  "input": {
+    "elapsed_minutes": 26,
+    "limit_minutes": 1194,
+    "warning_minutes": 50
+  },
+  "origin": "synthetic-generated"
+}
