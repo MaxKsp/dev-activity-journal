@@ -1,0 +1,12 @@
+{
+  "category": "retry",
+  "description": "Intervalo limitado por teto para reenvio de mensagens com falha",
+  "expected": 16,
+  "id": "SC-0262",
+  "input": {
+    "attempt": 3,
+    "base_seconds": 4,
+    "cap_seconds": 120
+  },
+  "origin": "synthetic-generated"
+}
