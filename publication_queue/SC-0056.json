@@ -1,0 +1,10 @@
+{
+  "category": "phone",
+  "description": "Normalização E.164 de número brasileiro para deduplicação de contatos",
+  "expected": "554731678031",
+  "id": "SC-0056",
+  "input": {
+    "raw": "(47) 31678031"
+  },
+  "origin": "synthetic-generated"
+}
