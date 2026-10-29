@@ -1,0 +1,10 @@
+{
+  "category": "phone",
+  "description": "Normalização E.164 de número brasileiro para deduplicação de contatos",
+  "expected": "5583902826286",
+  "id": "SC-0201",
+  "input": {
+    "raw": "+55 (83) 90282-6286"
+  },
+  "origin": "synthetic-generated"
+}
