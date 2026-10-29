@@ -67,8 +67,12 @@ A rotina interrompe automaticamente quando:
 - a quantidade de publicações locais atinge o limite conservador,
   considerando a primeira contagem válida.
 
-Se a contagem da API for inferior às 21 contribuições mostradas na
-captura, a publicação fica suspensa para evitar ultrapassar a meta.
+Como o perfil está privado, a API de contribuições da sessão CLI pode retornar zero.
+A rotina usa a referência **24 contribuições**, confirmada no perfil autenticado
+em 29/10/2026, e conta commits novos a partir de `bab8943`. O valor calculado
+é uma **estimativa**, não uma confirmação em tempo real do gráfico. O limite
+local interrompe envios para não ultrapassar o orçamento atribuído ao monitor.
+Arquivos já versionados e sem alterações não são republicados.
 
 Acompanhamento sem publicações:
 

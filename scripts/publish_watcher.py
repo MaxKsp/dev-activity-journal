@@ -76,6 +76,9 @@ def ready_files() -> list[Path]:
             continue
         if not path.read_text(encoding="utf-8").strip():
             continue
+        relative = path.relative_to(ROOT).as_posix()
+        if not call(["git", "status", "--porcelain", "--", relative]):
+            continue
         candidates.append(path)
     return candidates
 
@@ -96,40 +99,37 @@ def publish_one(path: Path) -> str:
     return f"Publicado: {relative}"
 
 
-def run(target: int, interval: int, day: date, minimum: int, *, once: bool, publish: bool) -> None:
+def run(target: int, interval: int, day: date, minimum: int, *, once: bool, publish: bool, anchor: str | None = None) -> None:
     if interval < 10:
         raise ValueError("Intervalo mínimo: 10 segundos")
     if not 1 <= minimum <= target:
         raise ValueError("Contagem mínima/objetivo inválidos")
     verify_repository()
-    observed_start = None
-    published = 0
-    print(f"MONITOR {day.isoformat()} a cada {interval}s, alvo={target}; publica={publish}", flush=True)
+    # A API pode ocultar contribuições de perfis privados; usar baseline da visão autenticada.
+    published = int(call(["git", "rev-list", "--count", f"{anchor}..HEAD"])) if anchor else 0
+    print(f"MONITOR {day.isoformat()} a cada {interval}s; baseline={minimum}; publicações após baseline={published}; alvo={target}; publica={publish}", flush=True)
     while True:
         if today_brazil() != day:
             print("ENCERRADO: data da meta terminou", flush=True)
             return
         try:
             count = contribution_count(day)
-            if count < minimum:
-                print(f"PAUSADO: API informa {count}, mas captura indica pelo menos {minimum}; nenhuma publicação", flush=True)
-            elif count >= target:
-                print(f"ALVO ATINGIDO: {count} contribuições confirmadas", flush=True)
+            # Acesso de CLI sem visibilidade do perfil privado retorna 0, apesar do gráfico autenticado.
+            # Estimativa conservadora: baseline observado + commits locais desde o snapshot.
+            estimate = max(count, minimum + published)
+            if estimate >= target:
+                label = "CONFIRMADO" if count >= target else "LIMITE LOCAL ATINGIDO (revalidar no navegador)"
+                print(f"{label}: API={count}; estimativa={estimate}/{target}", flush=True)
                 return
+            files = ready_files()
+            if not files:
+                print(f"SEM NOVA ALTERAÇÃO: API={count}; estimativa={estimate}/{target}", flush=True)
+            elif not publish:
+                print(f"SIMULAÇÃO: {len(files)} mudanças; API={count}; estimativa={estimate}/{target}", flush=True)
             else:
-                if observed_start is None:
-                    observed_start = count
-                # Limite adicional: não extrapolar meta durante atraso no gráfico.
-                if observed_start + published >= target:
-                    print("LIMITE DE PUBLICAÇÕES: aguardar indexação do GitHub", flush=True)
-                    return
-                files = ready_files()
-                if not files:
-                    print(f"SEM NOVA ENTREGA: {count}/{target}", flush=True)
-                elif not publish:
-                    print(f"SIMULAÇÃO: {len(files)} entregas na fila; {count}/{target}", flush=True)
-                else:
-                    print(publish_one(files[0]), flush=True)
+                result = publish_one(files[0])
+                print(result, flush=True)
+                if result.startswith("Publicado:"):
                     published += 1
         except (RuntimeError, ValueError, KeyError, TypeError, json.JSONDecodeError,
                 subprocess.TimeoutExpired) as exc:
@@ -144,12 +144,13 @@ def main() -> None:
     parser.add_argument("--target", type=int, default=435)
     parser.add_argument("--interval", type=int, default=10)
     parser.add_argument("--date", type=date.fromisoformat, default=today_brazil())
-    parser.add_argument("--minimum-visible", type=int, default=21)
+    parser.add_argument("--minimum-visible", type=int, default=24)
+    parser.add_argument("--anchor", default="bab8943", help="Commit de referência da contagem autenticada")
     parser.add_argument("--once", action="store_true")
     parser.add_argument("--publish", action="store_true", help="Publicar somente alterações aprovadas na fila")
     args = parser.parse_args()
     run(args.target, args.interval, args.date, args.minimum_visible,
-        once=args.once, publish=args.publish)
+        once=args.once, publish=args.publish, anchor=args.anchor)
 
 
 if __name__ == "__main__":
