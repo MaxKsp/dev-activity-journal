@@ -1,0 +1,10 @@
+{
+  "category": "phone",
+  "description": "Normalização E.164 de número brasileiro para deduplicação de contatos",
+  "expected": "551733657781",
+  "id": "SC-0306",
+  "input": {
+    "raw": "17 33657781"
+  },
+  "origin": "synthetic-generated"
+}
