@@ -1,0 +1,10 @@
+{
+  "category": "phone",
+  "description": "Normalização E.164 de número brasileiro para deduplicação de contatos",
+  "expected": "558531519651",
+  "id": "SC-0036",
+  "input": {
+    "raw": "(85) 31519651"
+  },
+  "origin": "synthetic-generated"
+}
