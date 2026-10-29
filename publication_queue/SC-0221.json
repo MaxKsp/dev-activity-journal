@@ -1,0 +1,10 @@
+{
+  "category": "phone",
+  "description": "Normalização E.164 de número brasileiro para deduplicação de contatos",
+  "expected": "5545902984666",
+  "id": "SC-0221",
+  "input": {
+    "raw": "+55 (45) 90298-4666"
+  },
+  "origin": "synthetic-generated"
+}
