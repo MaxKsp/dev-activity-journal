@@ -1,0 +1,10 @@
+{
+  "category": "phone",
+  "description": "Normalização E.164 de número brasileiro para deduplicação de contatos",
+  "expected": "5570902509526",
+  "id": "SC-0161",
+  "input": {
+    "raw": "+55 (70) 90250-9526"
+  },
+  "origin": "synthetic-generated"
+}
