@@ -1,0 +1,12 @@
+{
+  "category": "sla",
+  "description": "Classificação de prazo de atendimento em um pipeline de suporte",
+  "expected": "overdue",
+  "id": "SC-0008",
+  "input": {
+    "elapsed_minutes": 136,
+    "limit_minutes": 54,
+    "warning_minutes": 30
+  },
+  "origin": "synthetic-generated"
+}
