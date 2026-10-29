@@ -1,0 +1,10 @@
+{
+  "category": "phone",
+  "description": "Normalização E.164 de número brasileiro para deduplicação de contatos",
+  "expected": "559831836411",
+  "id": "SC-0076",
+  "input": {
+    "raw": "(98) 31836411"
+  },
+  "origin": "synthetic-generated"
+}
