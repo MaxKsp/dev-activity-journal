@@ -1,0 +1,10 @@
+{
+  "category": "phone",
+  "description": "Normalização E.164 de número brasileiro para deduplicação de contatos",
+  "expected": "5519902351146",
+  "id": "SC-0141",
+  "input": {
+    "raw": "+55 (19) 90235-1146"
+  },
+  "origin": "synthetic-generated"
+}
