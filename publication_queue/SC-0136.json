@@ -1,0 +1,10 @@
+{
+  "category": "phone",
+  "description": "Normalização E.164 de número brasileiro para deduplicação de contatos",
+  "expected": "557332311551",
+  "id": "SC-0136",
+  "input": {
+    "raw": "(73) 32311551"
+  },
+  "origin": "synthetic-generated"
+}
