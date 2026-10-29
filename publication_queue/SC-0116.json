@@ -1,0 +1,10 @@
+{
+  "category": "phone",
+  "description": "Normalização E.164 de número brasileiro para deduplicação de contatos",
+  "expected": "552232153171",
+  "id": "SC-0116",
+  "input": {
+    "raw": "(22) 32153171"
+  },
+  "origin": "synthetic-generated"
+}
