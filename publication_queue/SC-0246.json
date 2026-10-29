@@ -1,0 +1,10 @@
+{
+  "category": "phone",
+  "description": "Normalização E.164 de número brasileiro para deduplicação de contatos",
+  "expected": "554233182641",
+  "id": "SC-0246",
+  "input": {
+    "raw": "42 33182641"
+  },
+  "origin": "synthetic-generated"
+}
