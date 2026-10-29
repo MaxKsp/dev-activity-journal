@@ -1,0 +1,10 @@
+{
+  "category": "phone",
+  "description": "Normalização E.164 de número brasileiro para deduplicação de contatos",
+  "expected": "555331282081",
+  "id": "SC-0006",
+  "input": {
+    "raw": "53 31282081"
+  },
+  "origin": "synthetic-generated"
+}
