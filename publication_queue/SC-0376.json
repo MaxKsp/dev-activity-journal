@@ -1,0 +1,10 @@
+{
+  "category": "phone",
+  "description": "Normalização E.164 de número brasileiro para deduplicação de contatos",
+  "expected": "556234212111",
+  "id": "SC-0376",
+  "input": {
+    "raw": "(62) 34212111"
+  },
+  "origin": "synthetic-generated"
+}
