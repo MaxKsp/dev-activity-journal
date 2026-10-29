@@ -40,8 +40,9 @@ O repositório inclui casos sintéticos reproduzíveis para testar:
 normalização de telefones, políticas de retry/backoff, prazo SLA,
 janela de mensagens e pontuação de leads.
 
-Os arquivos `scenarios/SC-*.json` são gerados automaticamente, e
-`tests/test_scenarios.py` verifica dados, unicidade e resultado de cada caso.
+O gerador produz arquivos `scenarios/SC-*.json` localmente, sob demanda.
+`tests/test_scenarios.py` gera 412 casos temporários para verificar dados, unicidade,
+resultados e reprodutibilidade, sem versionar dados sintéticos em massa.
 **São cenários de teste gerados, não trabalho manual já executado nem contatos reais.**
 
 Para regerar e validar a amostra:
