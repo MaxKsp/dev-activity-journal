@@ -8,3 +8,5 @@ __pycache__/
 *.log
 # Casos sintéticos gerados sob demanda, não versionados
 scenarios/
+# Logs e estado operacional do monitor local
+.monitor/

@@ -84,3 +84,21 @@ Execução local contínua (até o fim do dia):
 
 É necessário manter o computador ligado e a sessão autenticada no GitHub.
 Não existe garantia de contabilização de um commit em 10 segundos no gráfico.
+
+## Campanha de cenários de testes incrementais (29/10/2026)
+
+O comando `py -3 scripts/case_campaign.py --once` gera, valida e publica **um**
+caso de regressão sintético no diretório `publication_queue/` (inclui entrada e
+resultado esperado). Sem `--once`, o intervalo é de 10 segundos entre o início
+dos ciclos. Cada publicação valida a suíte de testes e a sincronização com o remoto.
+A automação publica apenas casos inéditos; nunca cria commits vazios ou reescreve
+datas/histórico. Parada automática às 00h UTC de 30/10/2026 (21h no Brasil),
+ao esgotar os casos ou atingir o teto local de 435.
+
+A contagem inicial de **30** veio do perfil autenticado do GitHub no dia 29/10,
+com `8bf23f6` como referência Git. O valor mostrado no log é uma **estimativa**
+(30 + commits posteriores no repositório); ele pode divergir do calendário e
+não equivale a contribuições confirmadas. O GitHub pode atrasar a indexação.
+A rotina deve ser executada no computador com Python, Git e `gh` autenticados.
+O log é `.monitor/case_campaign.log`. Os 412 casos são dados sintéticos,
+não representam 412 correções manuais de sistemas reais.
