@@ -1,0 +1,10 @@
+{
+  "category": "phone",
+  "description": "Normalização E.164 de número brasileiro para deduplicação de contatos",
+  "expected": "5520903459806",
+  "id": "SC-0281",
+  "input": {
+    "raw": "+55 (20) 90345-9806"
+  },
+  "origin": "synthetic-generated"
+}
