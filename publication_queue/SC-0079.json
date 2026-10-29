@@ -1,0 +1,11 @@
+{
+  "category": "message",
+  "description": "Seleção entre atendimento de sessão e template por janela configurada",
+  "expected": "template",
+  "id": "SC-0079",
+  "input": {
+    "minutes_since_contact": 2209,
+    "window_minutes": 300
+  },
+  "origin": "synthetic-generated"
+}
