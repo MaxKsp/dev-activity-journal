@@ -1,0 +1,10 @@
+{
+  "category": "phone",
+  "description": "Normalização E.164 de número brasileiro para deduplicação de contatos",
+  "expected": "553633578591",
+  "id": "SC-0296",
+  "input": {
+    "raw": "(36) 33578591"
+  },
+  "origin": "synthetic-generated"
+}
