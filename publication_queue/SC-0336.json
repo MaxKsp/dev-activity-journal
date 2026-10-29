@@ -1,0 +1,10 @@
+{
+  "category": "phone",
+  "description": "Normalização E.164 de número brasileiro para deduplicação de contatos",
+  "expected": "554933895351",
+  "id": "SC-0336",
+  "input": {
+    "raw": "(49) 33895351"
+  },
+  "origin": "synthetic-generated"
+}
