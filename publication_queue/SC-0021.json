@@ -1,0 +1,10 @@
+{
+  "category": "phone",
+  "description": "Normalização E.164 de número brasileiro para deduplicação de contatos",
+  "expected": "5569901400866",
+  "id": "SC-0021",
+  "input": {
+    "raw": "+55 (69) 90140-0866"
+  },
+  "origin": "synthetic-generated"
+}
